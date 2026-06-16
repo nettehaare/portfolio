@@ -1,0 +1,14 @@
+# Betriebssystem
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Node (falls du wieder npm nutzt)
+node_modules/
+
+# Build-/SCSS-Reste
+*.css.map
+.sass-cache/

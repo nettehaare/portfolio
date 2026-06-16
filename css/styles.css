@@ -1,0 +1,342 @@
+/* =========================================================
+   Portfolio – Melvin Sae-Dan
+   Eine einzige, aufgeräumte CSS-Datei.
+   Kein externes Grid, keine Webfonts, keine Swiper-Abhängigkeit.
+   ========================================================= */
+
+:root {
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --line: #e6e6e6;
+  --bg: #ffffff;
+  --bg-soft: #f6f6f4;
+  --accent: #2f3adf;
+  --accent-dark: #1f28a8;
+
+  --maxw: 1200px;
+  --gap: 1.5rem;
+  --radius: 14px;
+
+  --font: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  font-family: var(--font);
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
+
+body {
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a { color: var(--accent); }
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Layout-Hilfen ---------- */
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.section { padding-block: clamp(3.5rem, 8vw, 7rem); }
+.section + .section { border-top: 1px solid var(--line); }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  text-transform: lowercase;
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Typografie ---------- */
+h1, h2, h3 {
+  font-weight: 700;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+h2 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+h2 span,
+h3 span {
+  display: block;
+  font-weight: 400;
+  text-transform: none;
+  font-size: 0.55em;
+  color: var(--muted);
+  margin-top: 0.4rem;
+}
+h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+p { color: #2d2d2d; }
+.lead { font-size: 1.1rem; max-width: 60ch; }
+.muted { color: var(--muted); }
+
+/* ---------- Hero ---------- */
+.hero {
+  text-align: center;
+  padding-block: clamp(4rem, 12vw, 8rem) clamp(2.5rem, 6vw, 4rem);
+}
+.hero h1 {
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.hero p {
+  margin-top: 1.25rem;
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 46ch;
+  margin-inline: auto;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: transparent;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+.btn:hover { background: var(--ink); color: #fff; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn.primary:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.5rem; }
+
+/* ---------- Teaser (Navigation in die Bereiche) ---------- */
+.teasers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--gap);
+}
+.teaser-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  aspect-ratio: 4 / 3;
+  text-decoration: none;
+  background: var(--bg-soft);
+}
+.teaser-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  transition: transform 400ms ease;
+}
+.teaser-card:hover img { transform: scale(1.06); }
+.teaser-card .label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  color: #fff;
+  font-weight: 600;
+  background: linear-gradient(to top, rgba(0,0,0,.6), rgba(0,0,0,0) 60%);
+} .teaser-card .label small {margin-left: 3px;}
+
+/* ---------- Über mich ---------- */
+.about {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 760px) {
+  .about { grid-template-columns: 1.4fr 1fr; }
+}
+.skills {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.skills li {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-soft);
+}
+
+/* ---------- Projekte ---------- */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--gap);
+  margin-top: 2rem;
+}
+.project {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: border-color 200ms ease, transform 200ms ease;
+}
+.project:hover { border-color: var(--ink); transform: translateY(-3px); }
+.project .tags {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
+}
+.project .tags li {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.project .links { display: flex; gap: 1rem; margin-top: 0.5rem; }
+.project .links a { font-size: 0.9rem; font-weight: 600; }
+
+/* ---------- Galerie: durchlaufendes Laufband (Marquee) ---------- */
+.gallery {
+  position: relative;
+  overflow: hidden;
+  /* sanftes Ausblenden an den Rändern */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+}
+.gallery-track {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-left var(--marquee-duration, 40s) linear infinite;
+}
+/* Laufrichtung */
+.gallery--move-right .gallery-track { animation-name: marquee-right; }
+
+/* Pausiert, wenn man mit Maus/Tastatur dran ist */
+.gallery:hover .gallery-track,
+.gallery:focus-within .gallery-track { animation-play-state: paused; }
+
+.gallery-slide {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+.gallery-slide img {
+  height: 320px;
+  width: auto;
+  max-width: none;
+  border-radius: 8px;
+}
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-1 * var(--shift, 50%))); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(calc(-1 * var(--shift, 50%))); }
+  to   { transform: translateX(0); }
+}
+
+/* Barrierefrei: bei "Bewegung reduzieren" kein Autoplay, dafür manuelles Scrollen */
+@media (prefers-reduced-motion: reduce) {
+  .gallery { overflow-x: auto; }
+  .gallery-track { animation: none; }
+}
+
+/* ---------- Bild-Reihen in Bereichen ---------- */
+.media-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+  align-items: center;
+  margin-top: 2rem;
+}
+@media (min-width: 760px) {
+  .media-row.split { grid-template-columns: 1fr 1fr; }
+}
+.media-row img { border-radius: 8px; width: 100%; max-height: 300px; object-fit: contain; }
+
+/* ---------- Video ---------- */
+.video-container {
+  margin-top: 2rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: #000;
+}
+.video-container video { width: 100%; height: auto; display: block; max-height: 70dvh;}
+
+/* ---------- Footer ---------- */
+footer {
+  border-top: 1px solid var(--line);
+  padding-block: 3rem;
+  text-align: center;
+}
+footer a { color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--ink); }
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ---------- Zurück-nach-oben-Button ---------- */
+#topBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 24px;
+  z-index: 99;
+  width: 48px;
+  height: 48px;
+  padding-bottom: 5px;
+  border: none;
+  border-radius: 12px;
+  background: rgba(26,26,26,.92);
+  color: #fff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 250ms ease, visibility 250ms ease, background 200ms ease;
+}
+#topBtn:hover { background: var(--accent); }
+#topBtn.show { opacity: 1; visibility: visible; }
