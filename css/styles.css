@@ -81,6 +81,7 @@ h2 {
   font-size: clamp(1.6rem, 4vw, 2.4rem);
   text-transform: uppercase;
   letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
 }
 h2 span,
 h3 span {
