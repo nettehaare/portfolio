@@ -1,6 +1,3 @@
-/* Portfolio – Melvin Sae-Dan
-   Komplett ohne externe Bibliotheken. */
-
 document.addEventListener('DOMContentLoaded', () => {
 
   const SPEED = 60; // Pixel pro Sekunde – größere Zahl = schneller
